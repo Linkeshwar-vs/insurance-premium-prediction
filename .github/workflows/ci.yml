@@ -20,7 +20,7 @@ jobs:
 
       - run: pip install -r requirements.txt
 
-      - run: python -c "from app.main import app"
+      - run: python -c "from app import app"
 
       - run: docker build -t insurance-api .
 
