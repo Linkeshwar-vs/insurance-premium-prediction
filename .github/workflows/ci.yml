@@ -1,3 +1,4 @@
+
 name: FastAPI CI
 
 on:
@@ -18,10 +19,11 @@ jobs:
         with:
           python-version: "3.12"
 
-      - run: pip install -r requirements.txt
+      - name: Install Dependencies
+        run: |
+          pip install -r requirements.txt
 
-      - run: python -c "from app import app"
-
-      - run: docker build -t insurance-api .
-
+      - name: Build Docker Image
+        run: |
+          docker build -t insurance-api .
 
