@@ -28,3 +28,29 @@ jobs:
           password: ${{ secrets.DOCKER_PASSWORD }}
 
       - run: docker push linkeshwar/insurance-api:latest
+
+  deploy:
+
+    needs: validation
+
+    runs-on: ubuntu-latest
+
+    steps:
+
+      - name: Deploy to EC2
+        uses: appleboy/ssh-action@v1.0.3
+
+        with:
+          host: ${{ secrets.EC2_HOST }}
+          username: ${{ secrets.EC2_USERNAME }}
+          key: ${{ secrets.EC2_SSH_KEY }}
+
+          script: |
+            cd ~/insurance-premium-prediction
+
+            docker compose pull
+
+            docker compose up -d
+
+
+

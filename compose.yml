@@ -14,7 +14,7 @@ services:
 
   fastapi1:
 
-    build: .
+    image: linkeshwar/insurance-api:latest
 
     environment:
       SERVER_ID: FastAPI-1
